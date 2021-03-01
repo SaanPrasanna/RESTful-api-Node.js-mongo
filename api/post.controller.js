@@ -20,4 +20,14 @@ module.exports = {
       })
       .catch((err) => res.json({ success: 0, result: err }));
   },
+  updatePost: async (req, res) => {
+    await Posts.findByIdAndUpdate(req.params.id, req.body)
+      .then((post) => {
+        if (!post) res.json({ success: 0, result: "Post not found!" });
+        res.json({ success: 1 });
+      })
+      .catch((err) => {
+        res.json({ success: 0, result: err });
+      });
+  },
 };
