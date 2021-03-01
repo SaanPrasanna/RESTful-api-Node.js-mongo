@@ -12,7 +12,8 @@ module.exports = {
     await newUser
       .save()
       .then((result) => {
-        res.json({ success: 1 });
+        result.password = undefined;
+        res.json({ success: 1, result: result });
       })
       .catch((err) => {
         res.json({ success: 0, result: err });
@@ -44,37 +45,4 @@ module.exports = {
       })
       .catch((err) => res.status(500).json({ success: 0, result: err }));
   },
-  /*
-  login: (req, res) => {
-    const body = req.body;
-    getUserByUserEmail(body.email, (err, results) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      if (!results) {
-        return res.json({
-          success: 0,
-          message: "Invalid email or password",
-        });
-      }
-      const result = compareSync(body.password, results.password);
-      if (result) {
-        results.password = undefined;
-        const jsonToken = sign({ result: results }, "qwe1234", {
-          expiresIn: "1h",
-        });
-        return res.json({
-          success: 1,
-          message: "Login successfuly",
-          token: jsonToken,
-        });
-      } else {
-        return res.json({
-          success: 0,
-          message: "Invalid email or Password",
-        });
-      }
-    });
-  },*/
 };
