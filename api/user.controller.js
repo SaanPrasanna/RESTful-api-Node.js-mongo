@@ -27,7 +27,7 @@ module.exports = {
         const result = compareSync(req.body.password, results.password);
         if (result) {
           results.password = undefined;
-          const jsonToken = sign({ result: results }, "qwe1234", {
+          const jsonToken = sign({ result: results }, "spm1234", {
             expiresIn: "1h",
           });
           return res.json({
