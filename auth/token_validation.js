@@ -5,7 +5,7 @@ module.exports = {
     let token = req.get("authorization");
     if (token) {
       token = token.slice(7);
-      verify(token, "spm1234", (err, decoded) => {
+      verify(token, "123456token", (err, decoded) => {
         if (err) {
           res.json({
             success: 0,
